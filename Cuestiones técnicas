@@ -1,14 +1,15 @@
--El usuario tiene que tener establecidos sus contactos de emergencia previamente (de no ser así, se le pedirá que lo haga). 
+-El usuario tiene que tener establecidos sus contactos de emergencia previamente (de no tenerlos, se le pedirá que lo haga). 
 La aplicación buscará esos contactos y será a ellos a los que le enviará el mensaje de emergencia.
 
--Es necesario proveer la ubicación vía GPS. Asumimos que nos enviará latitud y longitud por lo que deberíamos poder traducir 
+-Es necesario proveer la ubicación vía GPS. Asumimos que este nos devuelve latitud y longitud por lo que deberíamos poder traducir 
 eso a coordenadas que puedan ser entendidas.
 
 -La aplicación, cuando se encuentre cerrada, deberá enviar recordatorios al usuario para que este la abra. 
+(https://www.tutorialspoint.com/android/android_notifications.htm)
 
 -Deberá consumir la menor cantidad de batería posible y ejecutarse en segundo plano. 
 
--Sería útil tener dentro de la app números de emergencia para referencia.
+-Sería útil tener dentro de la app números de emergencia para referencia. (Ej: línea 144)
 
 -El usuario debería poder definir cada cuanto tiempo quiere que la aplicación le pregunte si se encuentra bien y le pida que
 vuelva a ingresar el pin.
@@ -16,3 +17,7 @@ vuelva a ingresar el pin.
 -Resolver problema del grabado de audio y de cómo va a subirse a la nube.
 
 -Botón de pánico: apretar x cantidad de veces el botón de inicio/sonido/apagado.
+
+-Diseño de la lockscreen.
+(https://m.reddit.com/r/learnprogramming/comments/2ccmi6/androidtutorial_simple_lockscreen_tutorial/)
+
