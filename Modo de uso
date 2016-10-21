@@ -1,0 +1,4 @@
+Cuando abra la pantalla de desbloqueo, deberá ingresar los siguientes números dependiendo de la situación:
+-1111: enviará un mensaje de emergencia con tu posición.
+-0000: enviará un mensaje de alerta con tu posición y requerirá que el código sea ingresado cada 10 minutos, de no ser el caso, enviará un mensaje de emergencia.
+-3333: comienza a grabar audio automáticamente.
