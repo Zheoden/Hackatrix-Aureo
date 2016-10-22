@@ -18,17 +18,20 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + PinActionsContract.PinActionsEntry.TABLE_NAME + " (" +
                     PinActionsContract.PinActionsEntry._ID + " INTEGER PRIMARY KEY," +
-                    PinActionsContract.PinActionsEntry.COLUMN_NAME_PIN + " INTEGER" + COMMA_SEP +
+                    PinActionsContract.PinActionsEntry.COLUMN_NAME_PIN + TEXT_TYPE + COMMA_SEP +
                     PinActionsContract.PinActionsEntry.COLUMN_NAME_ACTION + TEXT_TYPE + " );"+
             "CREATE TABLE " + ContactsDbContract.ContactsEntry.TABLE_NAME + " (" +
                     ContactsDbContract.ContactsEntry._ID + " INTEGER PRIMARY KEY," +
                     ContactsDbContract.ContactsEntry.COLUMN_NAME_NAME + TEXT_TYPE + COMMA_SEP +
                     ContactsDbContract.ContactsEntry.COLUMN_NAME_NUMBER + TEXT_TYPE + " );";
-                    /*+
-                    "CREATE INDEX " + PinActionsContract.PinActionsEntry.TABLE_NAME + "_" +
-                    PinActionsContract.PinActionsEntry.COLUMN_NAME_PIN + "_idx ON " +
-                    PinActionsContract.PinActionsEntry.TABLE_NAME;
-*/
+
+    private static final String SQL_CREATE_PINS = "INSERT INTO " + PinActionsContract.PinActionsEntry.TABLE_NAME +
+            " (" + PinActionsContract.PinActionsEntry.COLUMN_NAME_PIN + COMMA_SEP + PinActionsContract.PinActionsEntry.COLUMN_NAME_ACTION + ")" +
+            " VALUES ('1234', 'UNLOCK');" +
+            "INSERT INTO " + PinActionsContract.PinActionsEntry.TABLE_NAME +
+            " (" + PinActionsContract.PinActionsEntry.COLUMN_NAME_PIN + COMMA_SEP + PinActionsContract.PinActionsEntry.COLUMN_NAME_ACTION + ")" +
+            " VALUES ('1', 'POLICE_CALL');";
+
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + PinActionsContract.PinActionsEntry.TABLE_NAME;
 
@@ -39,6 +42,7 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_ENTRIES);
+        db.execSQL(SQL_CREATE_PINS);
     }
 
     @Override

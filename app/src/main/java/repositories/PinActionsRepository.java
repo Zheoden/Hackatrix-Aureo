@@ -64,20 +64,24 @@ public class PinActionsRepository {
                 null,                                     // don't filter by row groups
                 null                                 // The sort order
         );
-        cursor.moveToFirst();
-        PinAction pinAction = new PinAction();
-        pinAction.Action = cursor.getString(cursor.getColumnIndex(PinActionsEntry.COLUMN_NAME_ACTION));
-        pinAction.Pin = cursor.getInt(cursor.getColumnIndex(PinActionsEntry.COLUMN_NAME_PIN));
-        return pinAction;
+        if(cursor.moveToFirst()) {
+            PinAction pinAction = new PinAction();
+            pinAction.Action = cursor.getString(cursor.getColumnIndex(PinActionsEntry.COLUMN_NAME_ACTION));
+            pinAction.Pin = cursor.getString(cursor.getColumnIndex(PinActionsEntry.COLUMN_NAME_PIN));
+            return pinAction;
+        }
+        else {
+            return null;
+        }
     }
 
-    public PinAction GetPinActionByPin(int pin){
+    public PinAction GetPinActionByPin(String pin){
         String[] projection = {
                 PinActionsEntry.COLUMN_NAME_PIN,
                 PinActionsEntry.COLUMN_NAME_ACTION
         };
         String selection = PinActionsEntry.COLUMN_NAME_PIN + " = ?";
-        String[] selectionArgs = {Integer.toString(pin)};
+        String[] selectionArgs = {pin};
         Cursor cursor = getDbForRead().query(
                 PinActionsEntry.TABLE_NAME,                     // The table to query
                 projection,                               // The columns to return
@@ -87,10 +91,14 @@ public class PinActionsRepository {
                 null,                                     // don't filter by row groups
                 null                                 // The sort order
         );
-        cursor.moveToFirst();
-        PinAction pinAction = new PinAction();
-        pinAction.Action = cursor.getString(cursor.getColumnIndex(PinActionsEntry.COLUMN_NAME_ACTION));
-        pinAction.Pin = cursor.getInt(cursor.getColumnIndex(PinActionsEntry.COLUMN_NAME_PIN));
-        return pinAction;
+        if(cursor.moveToFirst()) {
+            PinAction pinAction = new PinAction();
+            pinAction.Action = cursor.getString(cursor.getColumnIndex(PinActionsEntry.COLUMN_NAME_ACTION));
+            pinAction.Pin = cursor.getString(cursor.getColumnIndex(PinActionsEntry.COLUMN_NAME_PIN));
+            return pinAction;
+        }
+        else{
+            return null;
+        }
     }
 }
