@@ -15,9 +15,17 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         Button ViewContacts = (Button)findViewById(R.id.Contacts);
+        Button ViewLock = (Button)findViewById(R.id.LockScreen);
+
         ViewContacts.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(SettingsActivity.this, ListaDeContactos.class));
+            }
+        });
+
+        ViewLock.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(SettingsActivity.this, MainActivity.class));
             }
         });
     }

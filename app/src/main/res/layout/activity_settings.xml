@@ -11,7 +11,7 @@
     tools:context="com.numapp.schif.numapp.SettingsActivity">
 
     <Button
-        android:text="Button"
+        android:text="Ver Contactos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -21,4 +21,16 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:id="@+id/Contacts" />
+
+    <Button
+        android:text="Ver Lock Screen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="28dp"
+        android:layout_marginStart="28dp"
+        android:id="@+id/LockScreen"
+        android:layout_alignBaseline="@+id/Contacts"
+        android:layout_alignBottom="@+id/Contacts"
+        android:layout_toRightOf="@+id/Contacts"
+        android:layout_toEndOf="@+id/Contacts" />
 </RelativeLayout>
