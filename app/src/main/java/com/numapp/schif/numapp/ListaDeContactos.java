@@ -1,27 +1,23 @@
 package com.numapp.schif.numapp;
 
-import android.app.Activity;
-import android.content.ContentUris;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.provider.Contacts;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import java.io.IOException;
-import java.io.InputStream;
+import models.Contact;
+import repositories.ContactRepository;
 
-import static android.R.attr.name;
 
 public class ListaDeContactos extends AppCompatActivity {
 
@@ -36,17 +32,10 @@ public class ListaDeContactos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_de_contactos);
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
 
         Button Ver = (Button) findViewById(R.id.ViewContact);
-        Button add = (Button) findViewById(R.id.AddContact);
-        Button modify = (Button) findViewById(R.id.ModifyContact);
-        Button delete = (Button) findViewById(R.id.DeleteContact);
-        TextView ViewContacts = (TextView) findViewById(R.id.txtNumeros);
-
         Ver.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivityForResult(new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI), REQUEST_CODE_PICK_CONTACTS);
@@ -63,11 +52,28 @@ public class ListaDeContactos extends AppCompatActivity {
         if (requestCode == REQUEST_CODE_PICK_CONTACTS && resultCode == RESULT_OK) {
             uriContact = data.getData();
 
-            String name = retrieveContactName();
-            ViewName.setText(name);
-            String number = retrieveContactNumber();
-            ViewContacts.setText(number);
+            ContactRepository contactRepository = new ContactRepository(getApplicationContext());
+            Contact Contact = new Contact();
+            Contact.Name = retrieveContactName();
+            ViewName.setText(Contact.Name);
+            Contact.Number = retrieveContactNumber();
+            ViewContacts.setText(Contact.Number);
+
+            long tryAdd = contactRepository.AddContact(Contact);
+            if(tryAdd == -1){
+                Mensaje("No se pudo grabar el usuario","Error","Aceptar");
+            }
         }
+    }
+
+    public void Mensaje(final String Mensaje, final String Titulo, final String PositiveButton ){
+        AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+
+        dlgAlert.setMessage(Mensaje);
+        dlgAlert.setTitle(Titulo);
+        dlgAlert.setPositiveButton(PositiveButton, null);
+        dlgAlert.setCancelable(true);
+        dlgAlert.create().show();
     }
 
     private String retrieveContactNumber() {

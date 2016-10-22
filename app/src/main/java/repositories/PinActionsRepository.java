@@ -30,23 +30,22 @@ public class PinActionsRepository {
         return dbHelper.getWritableDatabase();
     }
 
-    public void AddPinAction(PinAction pinAction){
+    public long AddPinAction(PinAction pinAction){
         ContentValues values = new ContentValues();
         values.put(PinActionsEntry.COLUMN_NAME_ACTION, pinAction.Action);
         values.put(PinActionsEntry.COLUMN_NAME_PIN, pinAction.Pin);
-        try {
-            long newRowId = getDbForWrite().insert(PinActionsContract.PinActionsEntry.TABLE_NAME, null, values);
-        } catch(Exception ex){
-            Log.i("DB ERROR", ex.getMessage());
-        }
+        long newRowId = getDbForWrite().insert(PinActionsContract.PinActionsEntry.TABLE_NAME, null, values);
+
+        return newRowId;
     }
 
-    public void UpdatePinAction(PinAction pinAction){
+    public int UpdatePinAction(PinAction pinAction){
         ContentValues values = new ContentValues();
         values.put(PinActionsEntry.COLUMN_NAME_PIN, pinAction.Pin);
         String selection = PinActionsEntry.COLUMN_NAME_ACTION + " = ?";
         String[] selectionArgs = {pinAction.Action};
         int count = getDbForWrite().update(PinActionsEntry.TABLE_NAME, values, selection, selectionArgs);
+        return count;
     }
 
     public PinAction GetPinActionByAction(String action){

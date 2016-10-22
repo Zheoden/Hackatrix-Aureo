@@ -19,7 +19,11 @@ public class DbHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + PinActionsContract.PinActionsEntry.TABLE_NAME + " (" +
                     PinActionsContract.PinActionsEntry._ID + " INTEGER PRIMARY KEY," +
                     PinActionsContract.PinActionsEntry.COLUMN_NAME_PIN + " INTEGER" + COMMA_SEP +
-                    PinActionsContract.PinActionsEntry.COLUMN_NAME_ACTION + TEXT_TYPE + " );";
+                    PinActionsContract.PinActionsEntry.COLUMN_NAME_ACTION + TEXT_TYPE + " );"+
+            "CREATE TABLE " + ContactsDbContract.ContactsEntry.TABLE_NAME + " (" +
+                    ContactsDbContract.ContactsEntry._ID + " INTEGER PRIMARY KEY," +
+                    ContactsDbContract.ContactsEntry.COLUMN_NAME_NAME + TEXT_TYPE + COMMA_SEP +
+                    ContactsDbContract.ContactsEntry.COLUMN_NAME_NUMBER + TEXT_TYPE + " );";
                     /*+
                     "CREATE INDEX " + PinActionsContract.PinActionsEntry.TABLE_NAME + "_" +
                     PinActionsContract.PinActionsEntry.COLUMN_NAME_PIN + "_idx ON " +
