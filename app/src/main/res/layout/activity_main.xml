@@ -10,14 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.numapp.schif.numapp.MainActivity">
 
-    <TextClock
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textClock2"
-        android:textSize="80sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
     <LinearLayout
         android:layout_width="400dp"
         android:layout_height="50dp"
@@ -117,9 +109,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button24"
-        android:layout_below="@+id/linearLayout3"
-        android:layout_alignRight="@+id/textClock2"
-        android:layout_alignEnd="@+id/textClock2" />
+        android:layout_below="@+id/linearLayout3" />
 
     <Button
         android:text="0"
@@ -130,12 +120,8 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/textView4"
         android:layout_weight="1"
-        android:layout_below="@+id/textClock2"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
