@@ -5,6 +5,6 @@ package models;
  */
 
 public class PinAction {
-    public int Pin;
+    public String Pin;
     public String Action;
 }
