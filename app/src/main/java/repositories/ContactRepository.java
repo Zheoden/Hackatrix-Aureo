@@ -37,7 +37,7 @@ public class ContactRepository {
         ContentValues values = new ContentValues();
         values.put(ContactsDbContract.ContactsEntry.COLUMN_NAME_NAME, Contact.Name);
         values.put(ContactsDbContract.ContactsEntry.COLUMN_NAME_NUMBER, Contact.Number);
-        long newRowId = getDbForWrite().insert(PinActionsContract.PinActionsEntry.TABLE_NAME, null, values);
+        long newRowId = getDbForWrite().insert(ContactsDbContract.ContactsEntry.TABLE_NAME, null, values);
 
         return  newRowId;
     }

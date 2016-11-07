@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import constants.Actions;
 import models.PinAction;
 import repositories.PinActionsRepository;
+import services.LockScreenService;
+
 import android.view.View;
 import android.widget.Button;
 
@@ -98,6 +101,8 @@ public class MainActivity extends AppCompatActivity {
                 clickOK();
             }
         });
+
+        startService(new Intent(this, LockScreenService.class));
     }
 
     public void click1(){
@@ -165,15 +170,24 @@ public class MainActivity extends AppCompatActivity {
         PinActionsRepository pinActionsRepository = new PinActionsRepository(getApplicationContext());
         PinAction pinAction = pinActionsRepository.GetPinActionByPin(pin);
         if(pinAction != null){
-            textView.setText(pinAction.Action);
+            switch(pinAction.Action){
+                case Actions.UNLOCK:
+                    android.os.Process.killProcess(android.os.Process.myPid());
+                case Actions.CALL_POLICE:
+                    //Llama a la cana
+                case Actions.CALL_AMBULANCE:
+                    //Llama a la ambulancia
+                case Actions.CALL_GENDER_VIOLENCE:
+                    //Llama a violencia de genero
+            }
         }
         else{
             CharSequence text = "El pin ingresado no es correcto";
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(getApplicationContext(), text, duration);
             toast.show();
+            pin = "";
+            textView.setText("");
         }
-        pin = "";
-        textView.setText("");
     }
 }
